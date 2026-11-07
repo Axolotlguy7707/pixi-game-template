@@ -13,18 +13,27 @@ export class Scene extends Pixi.Container {
         super();
 
         this.camera = new Camera(this.world, game.screen.width, game.screen.height);
-        
+
         this.addChild(this.world);
         this.addChild(this.hud);
     }
 
     public create(): void {}
 
-    public update(delta: number): void {
-        for (const child of this.children) {
+    private updateContainer(container: Pixi.Container, delta: number): void {
+        for (const child of container.children) {
             if ('update' in child && typeof child.update === 'function') {
                 child.update(delta);
             }
+
+            if (child instanceof Pixi.Container) {
+                this.updateContainer(child, delta);
+            }
         }
+    }
+
+    public update(delta: number): void {
+        this.updateContainer(this, delta);
+        this.camera.update(delta);
     }
 }
