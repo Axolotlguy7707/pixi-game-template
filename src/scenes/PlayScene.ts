@@ -7,7 +7,8 @@ export class PlayScene extends Scene {
     }
 
     override create(): void {
-
+        // Add things to the world using this.world.addChild(object)
+        // Add things to the hud by using this.hud.addChild(object)
     }
 
     override update(delta: number): void {

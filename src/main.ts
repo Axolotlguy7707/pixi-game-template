@@ -24,7 +24,7 @@ document.body.appendChild(game.canvas);
 Input.init();
 
 // physics stuff
-export const world: Planck.World = new Planck.World({
+export const physicsWorld: Planck.World = new Planck.World({
     gravity: new Planck.Vec2(0, 10)
 })
 
@@ -42,7 +42,7 @@ game.ticker.add((ticker) => {
 
     currentScene.update(delta);
 
-    world.step(delta);
+    physicsWorld.step(delta);
 
     Input.update(delta);
 });
