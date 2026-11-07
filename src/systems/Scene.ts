@@ -13,6 +13,9 @@ export class Scene extends Pixi.Container {
         super();
 
         this.camera = new Camera(this.world, game.screen.width, game.screen.height);
+        
+        this.addChild(this.world);
+        this.addChild(this.hud);
     }
 
     public create(): void {}
