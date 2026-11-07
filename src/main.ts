@@ -1,6 +1,7 @@
 import * as Pixi from 'pixi.js';
 import * as Planck from 'planck';
 import { Scene } from './systems/Scene';
+import { Input } from './systems/Input';
 import { PlayScene } from './scenes/PlayScene';
 
 import './style.css';
@@ -19,6 +20,8 @@ document.body.appendChild(game.canvas);
 // PRELOAD STUFF VIA
 // await Pixi.Assets.load("./path/to/image");
 
+// Input stuff
+Input.init();
 
 // physics stuff
 export const world: Planck.World = new Planck.World({
@@ -40,6 +43,8 @@ game.ticker.add((ticker) => {
     currentScene.update(delta);
 
     world.step(delta);
+
+    Input.update(delta);
 });
 
 export function switchScene(scene: Scene) {
